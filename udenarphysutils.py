@@ -66,7 +66,7 @@ def evcos(value, unit='rad'):
 class ExperimentalValue:
 
 	"""
-	ExperimentalValue: a class for representing experimental values with its measurand and its uncertainty. Provides integration for easy use with infix operators for basic arithmetic operations.
+	ExperimentalValue: a class for representing experimental values with uncertainty. Provides integration for easy use with infix operators for basic arithmetic operations.
 
 	Parameters:
 	-----------
