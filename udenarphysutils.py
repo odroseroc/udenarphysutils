@@ -1,5 +1,5 @@
 import math
-from icecream import ic
+# from icecream import ic
 
 # Auxiliar functions primarily used by the class ExperimentalValue
 
