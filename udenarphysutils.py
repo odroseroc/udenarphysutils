@@ -54,7 +54,7 @@ def evcos(value, unit='rad'):
 		case 'deg':
 			angle = math.radians(value.measurand)
 		case _:
-			raise ValueError(f"Unidad de ángulo '{unit}' no definida. La función evsin() sólo admite 'rad' o 'deg'.")
+			raise ValueError(f"Unidad de ángulo '{unit}' no definida. La función evcos() sólo admite 'rad' o 'deg'.")
 
 	measurand = math.cos(angle)		
 	uncertainty = abs(math.sin(value.measurand))*value.uncertainty
