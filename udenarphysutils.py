@@ -65,6 +65,15 @@ def evcos(value, unit='rad'):
 
 class ExperimentalValue:
 
+	"""
+	ExperimentalValue: a class for representing experimental values with its measurand and its uncertainty. Provides integration for easy use with infix operators for basic arithmetic operations.
+
+	Parameters:
+	-----------
+		measurand: The measurand of the experimental value
+		uncertainty: The uncertainty of the experimental value
+	"""
+
 	def __init__(self, measurand=0, uncertainty=0):
 		self.measurand = measurand
 		self.uncertainty = abs(uncertainty)
@@ -138,6 +147,7 @@ class ExperimentalValue:
 		measurand = self.measurand ** power
 		uncertainty = abs(measurand) * power * self.uncertainty / self.measurand
 		return ExperimentalValue(measurand, uncertainty)
+
 
 if __name__ == "__main__":
 	print("Ejecutando udenarphysutils.py \n")
