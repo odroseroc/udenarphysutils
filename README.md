@@ -1,2 +1,2 @@
 # udenarphysutils
-Utilities for the Physics Department of the Universidad de Nariño
+Utilities for the Physics Department at Universidad de Nariño
