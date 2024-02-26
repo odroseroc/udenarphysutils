@@ -1,7 +1,34 @@
 import math
 
-def isnumber(number):
-	return isinstance(number, int) or isinstance(number, float)
+def esnumero(valor: Any) -> bool:
+	"""Determina si un valor es un número real. """
+	return isinstance(valor, int) or isinstance(valor, float)
+
+def obtener_angulo(angulo: float, unidad: String = 'rad') -> float:
+	"""
+	Retorna el valor de un ángulo dado en radianes.
+	
+	Argumentos:
+	-----------
+		angulo: float
+			El valor del ángulo a ser convertido.
+		unidad: String = 'rad'
+			La unidad en que se a el ángulo. 'rad' = radianes, 'deg' = grados decimales
+
+	Lanza:
+	------
+		ValueError
+			si la unidad es algo diferente a 'rad' o 'deg'
+	"""	
+
+	match str(unidad).lower():
+		case 'rad':
+			angulo = angulo
+		case 'deg':
+			angulo = math.radians(angulo)
+		case _:
+			raise ValueError(f"Unidad de ángulo '{unidad}' no definida. La función evsin() sólo admite 'rad' o 'deg'.")
+	return angulo
 
 
 if __name__ == "__main__":
