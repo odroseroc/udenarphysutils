@@ -1,6 +1,6 @@
 import math
 
-def esnumero(valor: Any) -> bool:
+def esnumero(valor: any) -> bool:
 	"""Determina si un valor es un número real. """
 	return isinstance(valor, int) or isinstance(valor, float)
 
