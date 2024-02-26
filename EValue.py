@@ -1,49 +1,6 @@
 import math
 from funciones_basicas import *
-
-def converir_a_evalue(numero: float) -> EValue:
-	"""Convierte un número real en un valor experimental con incertidumbre cero."""
-	return EValue(numero, 0)
-
-
-# Funciones trigonométricas para la clase EValue
-
-def evsin(valor: EValue, unidad: String = 'rad') -> EValue:
-	"""
-	Retorna el seno de un EValue.
-	
-	Argumentos:
-	----------
-		valor : EValue
-			El valor cuyo seno se va a calcular.
-		unidad: String = 'rad'
-			Unidad del ángulo que se introdujo. Puede ser 'rad'(radianes) o 'deg'(grados decimales).
-	"""
-
-	angulo = obtener_angulo(valor.mesurando, unidad)
-
-	mesurando = math.sin(angulo)		
-	incertidumbre = abs(math.cos(valor.mesurando))*valor.incertidumbre
-	return EValue(mesurando, incertidumbre)
-
-def evcos(valor: EValue, unidad: String = 'rad'):
-	"""
-	Retorna el coseno de un EValue.
-	
-	Argumentos:
-	----------
-		valor : EValue
-			El valor cuyo coseno se va a calcular.
-		unidad: String = 'rad'
-			Unidad del ángulo que se introdujo. Puede ser 'rad'(radianes) o 'deg'(grados decimales).
-	"""
-
-	angulo = obtener_angulo(valor.mesurando, unidad)
-
-	mesurando = math.cos(angulo)		
-	incertidumbre = abs(math.sin(valor.mesurando))*valor.incertidumbre
-	return EValue(mesurando, incertidumbre)
-
+from icecream import ic
 
 # Clase
 
@@ -74,7 +31,7 @@ class EValue:
 
 	def __add__(self, other):
 		if esnumero(other):
-			other = converir_a_evalue(other)
+			other = convertir_a_evalue(other)
 
 		mesurando = self.mesurando + other.mesurando
 		incertidumbre = math.sqrt(self.incertidumbre**2 + other.incertidumbre**2)
@@ -87,20 +44,25 @@ class EValue:
 
 	def __sub__(self, other):
 		if esnumero(other):
-			other = converir_a_evalue(other)
+			other = EValue(other)
 
 		mesurando = self.mesurando - other.mesurando
 		incertidumbre = math.sqrt(self.incertidumbre**2 + other.incertidumbre**2)
 		return EValue(mesurando, incertidumbre)
 
 	def __rsub__(self, other):
-		return self - other
+		if esnumero(other):
+			other = EValue(other)
+
+		mesurando = other.mesurando - self.mesurando
+		incertidumbre = math.sqrt(self.incertidumbre**2 + other.incertidumbre**2)
+		return EValue(mesurando, incertidumbre)
 
 	# Multiplicación
 
 	def __mul__(self, other):
 		if esnumero(other):
-			other = converir_a_evalue(other)
+			other = convertir_a_evalue(other)
 
 		mesurando = self.mesurando * other.mesurando
 		incertidumbre = abs(mesurando) * math.sqrt((self.incertidumbre/self.mesurando)**2 + (other.incertidumbre/other.mesurando)**2)
@@ -113,7 +75,7 @@ class EValue:
 
 	def __truediv__(self, other):
 		if esnumero(other):
-			other = converir_a_evalue(other)
+			other = convertir_a_evalue(other)
 
 		mesurando = self.mesurando / other.mesurando
 		incertidumbre = abs(mesurando) * math.sqrt((self.incertidumbre / self.mesurando)**2 + (other.incertidumbre / other.mesurando)**2)
@@ -121,7 +83,7 @@ class EValue:
 
 	def __rtruediv__(self, other):
 		if esnumero(other):
-			other = converir_a_evalue(other)
+			other = convertir_a_evalue(other)
 
 		mesurando = other.mesurando/self.mesurando
 		incertidumbre = abs(mesurando) * math.sqrt((self.incertidumbre / self.mesurando)**2 + (other.incertidumbre / other.mesurando)**2)
@@ -136,3 +98,48 @@ class EValue:
 		mesurando = self.mesurando ** exponente
 		incertidumbre = abs(mesurando) * exponente * self.incertidumbre / self.mesurando
 		return EValue(mesurando, incertidumbre)
+
+
+def convertir_a_evalue(numero: float) -> EValue:
+	"""Convierte un número real en un valor experimental con incertidumbre cero."""
+	return EValue(numero, 0)
+
+
+# Funciones trigonométricas para la clase EValue
+
+def evsin(valor: EValue, unidad: str = 'rad') -> EValue:
+	"""
+	Retorna el seno de un EValue.
+	
+	Argumentos:
+	----------
+		valor : EValue
+			El valor cuyo seno se va a calcular.
+		unidad: str = 'rad'
+			Unidad del ángulo que se introdujo. Puede ser 'rad'(radianes) o 'deg'(grados decimales).
+	"""
+
+	angulo = obtener_angulo(valor.mesurando, unidad)
+
+	mesurando = math.sin(angulo)		
+	incertidumbre = abs(math.cos(valor.mesurando))*valor.incertidumbre
+	return EValue(mesurando, incertidumbre)
+
+def evcos(valor: EValue, unidad: str = 'rad'):
+	"""
+	Retorna el coseno de un EValue.
+	
+	Argumentos:
+	----------
+		valor : EValue
+			El valor cuyo coseno se va a calcular.
+		unidad: str = 'rad'
+			Unidad del ángulo que se introdujo. Puede ser 'rad'(radianes) o 'deg'(grados decimales).
+	"""
+
+	angulo = obtener_angulo(valor.mesurando, unidad)
+
+	mesurando = math.cos(angulo)		
+	incertidumbre = abs(math.sin(valor.mesurando))*valor.incertidumbre
+	return EValue(mesurando, incertidumbre)
+

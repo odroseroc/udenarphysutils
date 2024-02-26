@@ -4,7 +4,7 @@ def esnumero(valor: any) -> bool:
 	"""Determina si un valor es un número real. """
 	return isinstance(valor, int) or isinstance(valor, float)
 
-def obtener_angulo(angulo: float, unidad: String = 'rad') -> float:
+def obtener_angulo(angulo: float, unidad: str = 'rad') -> float:
 	"""
 	Retorna el valor de un ángulo dado en radianes.
 	
@@ -12,7 +12,7 @@ def obtener_angulo(angulo: float, unidad: String = 'rad') -> float:
 	-----------
 		angulo: float
 			El valor del ángulo a ser convertido.
-		unidad: String = 'rad'
+		unidad: str = 'rad'
 			La unidad en que se a el ángulo. 'rad' = radianes, 'deg' = grados decimales
 
 	Lanza:
