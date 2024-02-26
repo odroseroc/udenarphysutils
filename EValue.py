@@ -62,10 +62,12 @@ class EValue:
 
 	def __mul__(self, other):
 		if esnumero(other):
-			other = EValue(other)
+			mesurando = self.mesurando * other
+			incertidumbre = abs(other) * self.incertidumbre
+		else:
+			mesurando = self.mesurando * other.mesurando
+			incertidumbre = abs(mesurando) * math.sqrt((self.incertidumbre/self.mesurando)**2 + (other.incertidumbre/other.mesurando)**2)
 
-		mesurando = self.mesurando * other.mesurando
-		incertidumbre = abs(mesurando) * math.sqrt((self.incertidumbre/self.mesurando)**2 + (other.incertidumbre/other.mesurando)**2)
 		return EValue(mesurando, incertidumbre)
 
 	def __rmul__(self, other):
