@@ -1,6 +1,6 @@
 import math
 from funciones_basicas import *
-from icecream import ic
+# from icecream import ic
 
 # Clase
 
