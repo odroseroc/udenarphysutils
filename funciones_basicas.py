@@ -6,7 +6,7 @@ def esnumero(valor: any) -> bool:
 
 def obtener_angulo(angulo: float, unidad: str = 'rad') -> float:
 	"""
-	Retorna el valor de un ángulo dado en radianes.
+	Retorna el valor de un ángulo en radianes.
 	
 	Argumentos:
 	-----------
