@@ -31,7 +31,7 @@ class EValue:
 
 	def __add__(self, other):
 		if esnumero(other):
-			other = convertir_a_evalue(other)
+			other = Evalue(other)
 
 		mesurando = self.mesurando + other.mesurando
 		incertidumbre = math.sqrt(self.incertidumbre**2 + other.incertidumbre**2)
@@ -62,7 +62,7 @@ class EValue:
 
 	def __mul__(self, other):
 		if esnumero(other):
-			other = convertir_a_evalue(other)
+			other = EValue(other)
 
 		mesurando = self.mesurando * other.mesurando
 		incertidumbre = abs(mesurando) * math.sqrt((self.incertidumbre/self.mesurando)**2 + (other.incertidumbre/other.mesurando)**2)
@@ -75,7 +75,7 @@ class EValue:
 
 	def __truediv__(self, other):
 		if esnumero(other):
-			other = convertir_a_evalue(other)
+			other = EValue(other)
 
 		mesurando = self.mesurando / other.mesurando
 		incertidumbre = abs(mesurando) * math.sqrt((self.incertidumbre / self.mesurando)**2 + (other.incertidumbre / other.mesurando)**2)
@@ -83,7 +83,7 @@ class EValue:
 
 	def __rtruediv__(self, other):
 		if esnumero(other):
-			other = convertir_a_evalue(other)
+			other = EValue(other)
 
 		mesurando = other.mesurando/self.mesurando
 		incertidumbre = abs(mesurando) * math.sqrt((self.incertidumbre / self.mesurando)**2 + (other.incertidumbre / other.mesurando)**2)
@@ -98,11 +98,6 @@ class EValue:
 		mesurando = self.mesurando ** exponente
 		incertidumbre = abs(mesurando) * exponente * self.incertidumbre / self.mesurando
 		return EValue(mesurando, incertidumbre)
-
-
-def convertir_a_evalue(numero: float) -> EValue:
-	"""Convierte un número real en un valor experimental con incertidumbre cero."""
-	return EValue(numero, 0)
 
 
 # Funciones trigonométricas para la clase EValue
