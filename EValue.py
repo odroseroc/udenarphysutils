@@ -2,7 +2,7 @@ import math
 from funciones_basicas import *
 
 def converir_a_evalue(numero: float) -> EValue:
-	"""Convierte un número real en un valor experimental """
+	"""Convierte un número real en un valor experimental con incertidumbre cero."""
 	return EValue(numero, 0)
 
 
