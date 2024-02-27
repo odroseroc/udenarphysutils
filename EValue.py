@@ -117,9 +117,10 @@ def evsin(valor: EValue, unidad: str = 'rad') -> EValue:
 	"""
 
 	angulo = obtener_angulo(valor.mesurando, unidad)
+	incert = obtener_angulo(valor.incertidumbre, unidad)
 
 	mesurando = math.sin(angulo)		
-	incertidumbre = abs(math.cos(valor.mesurando))*valor.incertidumbre
+	incertidumbre = abs(math.cos(angulo))*incert
 	return EValue(mesurando, incertidumbre)
 
 def evcos(valor: EValue, unidad: str = 'rad'):
@@ -135,8 +136,9 @@ def evcos(valor: EValue, unidad: str = 'rad'):
 	"""
 
 	angulo = obtener_angulo(valor.mesurando, unidad)
+	incert = obtener_angulo(valor.incertidumbre, unidad)
 
 	mesurando = math.cos(angulo)		
-	incertidumbre = abs(math.sin(valor.mesurando))*valor.incertidumbre
+	incertidumbre = abs(math.sin(angulo))*incert
 	return EValue(mesurando, incertidumbre)
 
