@@ -31,7 +31,7 @@ class EValue:
 
 	def __add__(self, other):
 		if esnumero(other):
-			other = Evalue(other)
+			other = EValue(other)
 
 		mesurando = self.mesurando + other.mesurando
 		incertidumbre = math.sqrt(self.incertidumbre**2 + other.incertidumbre**2)
