@@ -15,7 +15,7 @@ def obtener_angulo(angulo: float, unidad: str = 'rad') -> float:
 		unidad: str = 'rad'
 			La unidad en que se a el ángulo. 'rad' = radianes, 'deg' = grados decimales
 
-	Lanza:
+	Arroja:
 	------
 		ValueError
 			si la unidad es algo diferente a 'rad' o 'deg'
